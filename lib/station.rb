@@ -27,6 +27,14 @@ attr_accessor(:name, :id)
     @id = result.first['id'].to_i
   end
 
+  def update(new_name)
+    DB.exec("UPDATE stations SET name = '#{new_name}' WHERE id = #{self.id};")
+  end
+
+  def delete
+    DB.exec("DELETE FROM stations WHERE id = #{self.id};")
+  end
+
   def ==(another_station)
     self.name == another_station.name
   end

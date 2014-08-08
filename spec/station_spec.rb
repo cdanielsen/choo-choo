@@ -32,4 +32,23 @@ describe Station do
       expect(new_station1).to eq new_station2
     end
   end
+
+  describe "update" do
+    it "changes the name of the station" do
+      new_station = Station.new({:name => 'Everton "pon the pond'})
+      new_station.save
+      new_station.update('Shakespeare"s dive')
+      expect(Station.all[0].name).to eq 'Shakespeare"s dive'
+    end
+  end
+
+  describe "delete" do
+    it "deletes a station from the database" do
+      new_station = Station.new({:name => 'Everton "pon the pond'})
+      new_station.save
+      new_station.delete
+      expect(Station.all).to eq []
+    end
+  end
+
 end
