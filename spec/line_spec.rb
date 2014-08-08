@@ -33,4 +33,13 @@ describe Line do
       expect(new_line1).to eq new_line2
     end
   end
+
+  describe "update" do
+    it "changes the name of the line" do
+      new_line = Line.new({:name => "Fancy Line"})
+      new_line.save
+      new_line.update("Rubbish Line")
+      expect(Line.all[0].name).to eq "Rubbish Line"
+    end
+  end
 end

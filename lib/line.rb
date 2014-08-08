@@ -27,6 +27,10 @@ attr_accessor(:name, :id)
     @id = result.first['id'].to_i
   end
 
+  def update(new_name)
+    DB.exec("UPDATE lines SET name = '#{new_name}' WHERE id = #{self.id};")
+  end
+
   def ==(another_line)
     self.name == another_line.name
   end
