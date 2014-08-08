@@ -2,10 +2,11 @@ require 'pg'
 
 class Line
 
-attr_reader(:name)
+attr_accessor(:name, :id)
 
   def initialize(line_attributes)
     @name = line_attributes[:name]
+    @id = line_attributes[:id]
   end
 
   def self.all
@@ -21,4 +22,12 @@ attr_reader(:name)
     lines
   end
 
+  def save
+    result = DB.exec("INSERT INTO lines (name) VALUES ('#{@name}') RETURNING id;")
+    @id = result.first['id'].to_i
+  end
+
+  def ==(another_line)
+    self.name == another_line.name
+  end
 end
