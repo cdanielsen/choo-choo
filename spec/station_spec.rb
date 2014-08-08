@@ -51,4 +51,26 @@ describe Station do
     end
   end
 
+  describe "add_line" do
+    it "links a line to a station" do
+      new_line = Line.new({:name => "Fancy Line"})
+      new_line.save
+      new_station = Station.new({:name => 'Everton "pon the pond'})
+      new_station.save
+      new_station.add_line(new_line)
+      expect(new_station.view_lines).to eq [new_line]
+    end
+  end
+
+  describe "view_lines" do
+    it "shows all lines for a particular station" do
+      new_line = Line.new({:name => "Fancy Line"})
+      new_line.save
+      new_station = Station.new({:name => 'Everton "pon the pond'})
+      new_station.save
+      new_station.add_line(new_line)
+      expect(new_station.view_lines).to eq [new_line]
+    end
+  end
+
 end
