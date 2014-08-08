@@ -31,6 +31,10 @@ attr_accessor(:name, :id)
     DB.exec("UPDATE lines SET name = '#{new_name}' WHERE id = #{self.id};")
   end
 
+  def delete
+    DB.exec("DELETE FROM lines WHERE id = #{self.id};")
+  end
+
   def ==(another_line)
     self.name == another_line.name
   end

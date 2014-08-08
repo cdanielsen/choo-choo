@@ -42,4 +42,13 @@ describe Line do
       expect(Line.all[0].name).to eq "Rubbish Line"
     end
   end
+
+  describe "delete" do
+    it "deletes a line from the database" do
+      new_line = Line.new({:name => "Fancy Line"})
+      new_line.save
+      new_line.delete
+      expect(Line.all).to eq []
+    end
+  end
 end
