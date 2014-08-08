@@ -9,7 +9,6 @@ describe Line do
     end
   end
 
-
   describe "self.all" do
     it "display all lines as an array" do
       expect(Line.all).to eq []
