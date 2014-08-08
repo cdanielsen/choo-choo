@@ -33,6 +33,7 @@ attr_accessor(:name, :id)
 
   def delete
     DB.exec("DELETE FROM stations WHERE id = #{self.id};")
+    DB.exec("DELETE FROM stops WHERE station_id = #{self.id};")
   end
 
   def add_line(line)

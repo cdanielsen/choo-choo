@@ -33,6 +33,7 @@ attr_accessor(:name, :id)
 
   def delete
     DB.exec("DELETE FROM lines WHERE id = #{self.id};")
+    DB.exec("DELETE FROM stops WHERE line_id = #{self.id};")
   end
 
   def add_station(station)
