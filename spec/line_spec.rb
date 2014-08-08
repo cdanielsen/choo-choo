@@ -8,4 +8,11 @@ describe Line do
       expect(new_line.name).to eq "Fancy Line"
     end
   end
+
+
+  describe "self.all" do
+    it "display all lines as an array" do
+      expect(Line.all).to eq []
+    end
+  end
 end
