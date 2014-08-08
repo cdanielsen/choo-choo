@@ -35,6 +35,23 @@ attr_accessor(:name, :id)
     DB.exec("DELETE FROM lines WHERE id = #{self.id};")
   end
 
+  def add_station(station)
+    DB.exec("INSERT INTO stops (station_id, line_id) VALUES (#{station.id}, #{self.id});")
+  end
+
+  def view_stations
+    stations = []
+    results = DB.exec("SELECT stations.* FROM lines JOIN stops ON (lines.id = stops.line_id) JOIN stations ON (stops.station_id = stations.id) WHERE lines.id = #{self.id};")
+    results.each do |result|
+      station_attributes = {
+        :id => result['id'].to_i,
+        :name => result['name']
+      }
+      stations << Station.new(station_attributes)
+    end
+    stations
+  end
+
   def ==(another_line)
     self.name == another_line.name
   end
